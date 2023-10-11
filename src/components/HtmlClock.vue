@@ -29,7 +29,6 @@ export default {
         }
     },
     mounted() {
-        console.log(this.theme)
         setInterval(() => {
             this.updateTime()
         }, 1000);
@@ -43,7 +42,6 @@ export default {
             this.hour = hour.toString().padStart(2, "0");
             this.minutes = minutes.toString().padStart(2, "0");
             this.seconds = seconds.toString().padStart(2, "0");
-            console.log(hour)
             if (hour > 13) {
                 this.AmPm = "PM"
             } else {
