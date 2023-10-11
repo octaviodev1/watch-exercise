@@ -1,5 +1,7 @@
 <template>
   <HtmlClock theme="rainbow"></HtmlClock>
+  <HtmlClock theme="red"></HtmlClock>
+  <HtmlClock></HtmlClock>
 </template>
 
 <script>

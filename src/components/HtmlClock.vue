@@ -6,18 +6,20 @@
             <div class="minutes">{{ minutes }}</div>
             <div class="dots"> : </div>
             <div class="seconds"> {{ seconds }}</div>
-            <div class="pm-am">
-                {{ AmPm }} </div>
+            <div class="am-pm">{{ AmPm }} </div>
         </div>
     </div>
 </template>
 
 <script>
+const ACCEPTED_VALUES = ["rainbow", "blue"]
 export default {
     name: "HtmlClock",
     props: {
         theme: {
-            rainbow: String
+            type: String,
+            validator: (value) => ACCEPTED_VALUES.includes(value)
+
         }
     },
     data() {
@@ -36,13 +38,16 @@ export default {
     methods: {
         updateTime() {
             const date = new Date();
+
             let hour = date.getHours();
             let minutes = date.getMinutes();
             let seconds = date.getSeconds();
+
             this.hour = hour.toString().padStart(2, "0");
             this.minutes = minutes.toString().padStart(2, "0");
             this.seconds = seconds.toString().padStart(2, "0");
-            if (hour > 13) {
+
+            if (hour > 12) {
                 this.AmPm = "PM"
             } else {
                 this.AmPm = "AM"
@@ -104,13 +109,13 @@ export default {
     margin: 0 auto;
 }
 
-.pm-am {
+.am-pm {
     margin-left: 10px;
     font-size: 10px;
     height: fit-content;
 }
 
 .dots {
-    animation: appearDisappear 1s ease infinite;
+    animation: appearDisappear 1s steps(1) infinite;
 }
 </style>
